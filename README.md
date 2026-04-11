@@ -5,7 +5,7 @@
 [![Field: AI Ethics](https://img.shields.io/badge/Field-AI%20Governance-gold)](https://maqasidai.org)
 
 # 🛡️ MaqasidAI.ORG
-# Built on Maqasid, BAcked by AI.
+# Built on Maqasid, Backed by AI.
 
 **An independent, technical auditing framework for evaluating Large Language Models (LLMs) and AI systems through the lens of Maqasid al-Shariah (The Higher Objectives of Islamic Law).**
 
@@ -107,7 +107,6 @@ For audits, certifications, or partnerships:
 
 - **Email:** [syedabeenishf.14@gmail.com]
 - **LinkedIn:** [https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/]
-- **GitHub:** [[Your GitHub](https://github.com/DataDragon110)]
 
 ---
 
