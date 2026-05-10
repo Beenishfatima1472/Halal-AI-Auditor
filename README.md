@@ -197,4 +197,4 @@ For audits, certifications, or research partnerships:
 
 ## License
 
-MIT License — open for academic and commercial use with attribution.
+Apache License 2.0 — open for academic and commercial use with attribution. Copyright 2026 MaqasidAI.ORG
