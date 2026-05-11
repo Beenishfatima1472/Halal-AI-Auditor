@@ -2,7 +2,7 @@
 
 **Maqasid AI Compliance Index (MACI)** is an open technical framework for auditing Large Language Models (LLMs) through the lens of Maqasid al-Shariah (The Higher Objectives of Islamic Law).
 
-Built by [Syeda Beenish Fatima](https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/) · [MaqasidAI.org](https://maqasidai.org) · Python 3.9+ · License: MIT
+Built by [Syeda Beenish Fatima](https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/) · [MaqasidAI.org](https://maqasidai.org) · Python 3.9+ · License: Apache 2.0
 
 ---
 
