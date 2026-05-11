@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MaqasidAI — Fintech Engagement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f1114;
+    --ink-muted: #4a4f5a;
+    --ink-faint: #8a909c;
+    --surface: #f8f7f4;
+    --surface-2: #eeecea;
+    --teal: #0d6b56;
+    --teal-light: #e4f2ee;
+    --amber: #b86a00;
+    --amber-light: #fef3e2;
+    --red: #991f1f;
+    --red-light: #fdeaea;
+    --border: #d8d5d0;
+    --radius: 10px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: #f8f7f4;
+    padding: 52px 60px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+  .header-left { max-width: 520px; }
+  .kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9da4af;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    line-height: 1.15;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #f8f7f4;
+  }
+  h1 em { font-style: italic; color: #7ecfb8; }
+  .header-sub {
+    font-size: 14px;
+    color: #9da4af;
+    max-width: 440px;
+  }
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .score-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #9da4af;
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .tier-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .tier-full   { background: #0d6b56; color: #e4f2ee; }
+  .tier-comply { background: #1a5c2f; color: #d4f0e0; }
+  .tier-warn   { background: #7a4f00; color: #fef3e2; }
+  .tier-fail   { background: #991f1f; color: #fdeaea; }
+
+  /* ── MAIN ── */
+  main { max-width: 960px; margin: 0 auto; padding: 56px 60px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+
+  p { color: var(--ink-muted); margin-bottom: 12px; font-size: 14px; }
+
+  /* ── PILLARS GRID ── */
+  .pillars { margin: 48px 0; }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .pillar-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 14px 16px;
+    text-align: center;
+  }
+  .pillar-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .pillar-arabic {
+    font-family: 'DM Serif Display', serif;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+  .pillar-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .pillar-universal {
+    font-size: 11px;
+    color: var(--teal);
+    background: var(--teal-light);
+    border-radius: 4px;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── AUDIT RESULT TABLE ── */
+  .audit-section { margin: 48px 0; }
+  .audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 20px;
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .audit-table th {
+    background: var(--ink);
+    color: #9da4af;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    text-align: left;
+    font-weight: 400;
+  }
+  .audit-table td {
+    padding: 13px 18px;
+    border-top: 1px solid var(--border);
+    color: var(--ink-muted);
+    vertical-align: top;
+  }
+  .audit-table td:first-child { color: var(--ink); font-weight: 500; }
+  .audit-table .score-cell {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+  .score-pass { color: var(--teal); }
+  .score-fail { color: var(--red); }
+  .score-partial { color: var(--amber); }
+  .audit-table tr.total-row td {
+    background: #f2f0ec;
+    font-weight: 500;
+    color: var(--ink);
+    border-top: 2px solid var(--border);
+  }
+  .status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+  }
+  .status-fail { background: var(--red-light); color: var(--red); }
+  .status-pass { background: var(--teal-light); color: var(--teal); }
+
+  /* ── ENGAGEMENT TIERS ── */
+  .engagement { margin: 48px 0; }
+  .engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .eng-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+  }
+  .eng-card.featured {
+    border-color: var(--teal);
+    background: var(--teal-light);
+  }
+  .eng-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .eng-card.featured .eng-num { color: var(--teal); }
+  .eng-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .eng-card.featured .eng-title { color: var(--teal); }
+  .eng-desc { font-size: 13px; color: var(--ink-muted); margin-bottom: 14px; }
+  .eng-card.featured .eng-desc { color: #2a6b56; }
+  .eng-deliverable {
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+  .eng-card.featured .eng-deliverable { border-color: #9ad0c2; color: var(--teal); }
+
+  /* ── ROADMAP ── */
+  .roadmap { margin: 48px 0; }
+  .roadmap-list { margin-top: 20px; display: flex; flex-direction: column; gap: 0; }
+  .roadmap-item {
+    display: grid;
+    grid-template-columns: 110px 1fr 90px;
+    gap: 20px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .roadmap-item:last-child { border-bottom: none; }
+  .roadmap-version {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .roadmap-desc { color: var(--ink-muted); }
+  .roadmap-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-align: right;
+  }
+  .status-done     { color: var(--teal); }
+  .status-active   { color: var(--amber); }
+  .status-planned  { color: var(--ink-faint); }
+
+  /* ── CONTACT ── */
+  footer {
+    background: var(--ink);
+    color: #9da4af;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  footer a { color: #7ecfb8; text-decoration: none; }
+  .footer-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #f8f7f4;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="kicker">MaqasidAI.org — Independent AI Auditing</div>
+    <h1>Shariah-grounded.<br>Universally <em>human.</em></h1>
+    <p class="header-sub">
+      MACI is the first independent technical framework for auditing AI systems through the lens
+      of Maqasid al-Shariah — five pillars that map directly onto values every ethics board already holds.
+    </p>
+  </div>
+  <div class="header-right">
+    <div class="score-badge">Certification tiers</div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;margin-top:8px;">
+      <span class="tier-pill tier-full">50/50 — Fully Halal Certified</span>
+      <span class="tier-pill tier-comply">40–49 — Compliant with Recommendations</span>
+      <span class="tier-pill tier-warn">30–39 — Needs Improvement</span>
+      <span class="tier-pill tier-fail">&lt;30 — Not Certified</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PILLARS -->
+  <section class="pillars">
+    <div class="section-label">The five pillars — Shariah-specific, universally grounded</div>
+    <h2>Every pillar names something your risk team already worries about.</h2>
+    <p>Western AI ethics frameworks use different vocabulary. MACI provides a structured scoring methodology that maps one-to-one — making it legible to Islamic finance boards and US compliance officers alike.</p>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🛡️</div>
+        <div class="pillar-arabic">Hifz al-Din</div>
+        <div class="pillar-name">Protection of Faith</div>
+        <div class="pillar-universal">No hallucinated authority</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🫀</div>
+        <div class="pillar-arabic">Hifz al-Nafs</div>
+        <div class="pillar-name">Protection of Life</div>
+        <div class="pillar-universal">AI safety & harm prevention</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-arabic">Hifz al-Aql</div>
+        <div class="pillar-name">Protection of Intellect</div>
+        <div class="pillar-universal">Explainability & anti-manipulation</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🏠</div>
+        <div class="pillar-arabic">Hifz al-Nasl</div>
+        <div class="pillar-name">Protection of Lineage</div>
+        <div class="pillar-universal">Social cohesion & cultural fit</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">⚖️</div>
+        <div class="pillar-arabic">Hifz al-Mal</div>
+        <div class="pillar-name">Protection of Property</div>
+        <div class="pillar-universal">Financial ethics & fair dealing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT RESULT -->
+  <section class="audit-section">
+    <div class="section-label">Sample audit — ChatGPT-4o, April 2026</div>
+    <h2>Shadow audit result: 26 / 50</h2>
+    <p>This is what a MACI audit report looks like. Every client receives a scored report, per-pillar breakdown, and a remediation roadmap.</p>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th>Pillar</th>
+          <th>Score</th>
+          <th>Key finding</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Protection of Faith (Hifz al-Din)</td>
+          <td class="score-cell score-fail">0 / 10</td>
+          <td>Fabricated fatwa language detected; no authority validation present</td>
+          <td><span class="status-badge status-fail">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Protection of Life (Hifz al-Nafs)</td>
+          <td class="score-cell score-pass">10 / 10</td>
+          <td>Harm mitigation protocols pass all test cases</td>
+          <td><span class="status-badge status-pass">Pass</span></td>
+        </tr>
+        <tr>
+          <td>Protection of Intellect (Hifz al-Aql)</td>
+          <td class="score-cell score-pass">10 / 10</td>
+          <td>Explainability tools present; no deceptive patterns detected</td>
+          <td><span class="status-badge status-pass">Pass</span></td>
+        </tr>
+        <tr>
+          <td>Protection of Lineage (Hifz al-Nasl)</td>
+          <td class="score-cell score-partial">6 / 10</td>
+          <td>Partial compliance; cultural context gaps in content moderation</td>
+          <td><span class="status-badge" style="background:var(--amber-light);color:var(--amber)">Partial</span></td>
+        </tr>
+        <tr>
+          <td>Protection of Property (Hifz al-Mal)</td>
+          <td class="score-cell score-fail">0 / 10</td>
+          <td>Riba-linked financial recommendations detected in fintech queries</td>
+          <td><span class="status-badge status-fail">Critical</span></td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td class="score-cell" style="color:var(--red);">26 / 50</td>
+          <td>Two critical pillars failing. Significant remediation required.</td>
+          <td><span class="status-badge status-fail">Not Certified</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ENGAGEMENT -->
+  <section class="engagement">
+    <div class="section-label">How to engage</div>
+    <h2>Three ways to work with MaqasidAI</h2>
+    <p>Whether you want a one-time audit report for your board or ongoing compliance monitoring embedded in your pipeline, we have a tier for it.</p>
+    <div class="engagement-grid">
+      <div class="eng-card">
+        <div class="eng-num">Tier 01</div>
+        <div class="eng-title">Shadow Audit</div>
+        <div class="eng-desc">Submit your AI system's outputs. We run the full 50-point MACI evaluation and deliver a signed audit report — no access to your model required.</div>
+        <div class="eng-deliverable">Deliverable: Full MACI report · Cert. status · Findings summary</div>
+      </div>
+      <div class="eng-card featured">
+        <div class="eng-num">Tier 02 — Most requested</div>
+        <div class="eng-title">Integration Audit</div>
+        <div class="eng-desc">Embed the MACI scanner at your inference output layer. We audit in real-time — no changes to your model, stack, or inference pipeline.</div>
+        <div class="eng-deliverable">Deliverable: Live compliance dashboard · API integration · Report</div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">Tier 03</div>
+        <div class="eng-title">Certification Partnership</div>
+        <div class="eng-desc">Ongoing monitoring, quarterly re-audits, and co-branded MACI Certification for your platform — for companies seeking demonstrable Shariah AI compliance.</div>
+        <div class="eng-deliverable">Deliverable: Certificate · Quarterly re-audit · Partner badge</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="roadmap">
+    <div class="section-label">Technical roadmap</div>
+    <h2>Where the framework is going</h2>
+    <div class="roadmap-list">
+      <div class="roadmap-item">
+        <div class="roadmap-version">v1.0 — Rule engine</div>
+        <div class="roadmap-desc">Keyword-based Riba / Gharar / fake-fatwa detection. Public on GitHub.</div>
+        <div class="roadmap-status status-done">✓ Released</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-version">v1.5 — ML classifier</div>
+        <div class="roadmap-desc">Trained Fake-Fatwa Shield model. Pending journal publication before open-sourcing.</div>
+        <div class="roadmap-status status-active">In dev</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-version">v2.0 — MACI API</div>
+        <div class="roadmap-desc">REST API for enterprise integration. Authenticated endpoints per pillar.</div>
+        <div class="roadmap-status status-planned">Planned</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-version">v2.5 — Agentic audit</div>
+        <div class="roadmap-desc">RAG-powered autonomous audit agents. Retrieval over authenticated fatwa corpora for live comparison.</div>
+        <div class="roadmap-status status-planned">Planned</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-version">v3.0 — Cert. portal</div>
+        <div class="roadmap-desc">MaqasidAI.org certification dashboard. Public registry of certified AI systems.</div>
+        <div class="roadmap-status status-planned">Planned</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section style="margin: 48px 0;">
+    <div class="section-label">Academic foundation</div>
+    <h2>Built on peer-reviewed research</h2>
+    <p>MACI is not a consulting product that cites ethics principles. It is a framework derived from original research, with the underlying model currently under Q1 journal review.</p>
+    <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;">
+      <div style="font-size:13px;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:8px;color:var(--ink-muted);">
+        <strong style="color:var(--ink);font-weight:500;">Fake-Fatwa Shield: Cultural AI Ethics for Protecting Religious Authenticity in the Age of Generative AI</strong> — Q1 journal, under review
+      </div>
+      <div style="font-size:13px;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:8px;color:var(--ink-muted);">
+        <strong style="color:var(--ink);font-weight:500;">Cultural Pattern Authentication: A New Framework for Arabic Religious Text Verification</strong> — 80% accuracy, 100% recall — under review
+      </div>
+      <div style="font-size:13px;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:8px;color:var(--ink-muted);">
+        <strong style="color:var(--ink);font-weight:500;">Tiny Transformers for Financial Sentiment Analysis</strong> — <a href="https://amresearchjournal.com/index.php/Journal/article/view/1038" style="color:var(--teal);">Published</a>
+      </div>
+      <div style="font-size:13px;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:8px;color:var(--ink-muted);">
+        <strong style="color:var(--ink);font-weight:500;">From Black Box to Glass Box: Cross-Domain Counterfactual Explanations</strong> — Accepted, Springer/Scopus (ICCET)
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:13px;">
+      <strong style="color:var(--ink);font-weight:500;">Syeda Beenish Fatima</strong> — Founder & Lead Auditor · MSDS, Superior University Lahore · PhD Candidate<br>
+      <strong style="color:var(--ink);font-weight:500;">Dr. Fawad Nasim</strong> — Academic Advisor · Superior University Lahore
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <div class="footer-title">Ready to audit your AI?</div>
+    <div>For audits, certifications, and partnerships — reach out directly.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;font-size:13px;">
+    <a href="mailto:syedabeenishf.14@gmail.com">syedabeenishf.14@gmail.com</a>
+    <a href="https://maqasidai.org">maqasidai.org</a>
+    <a href="https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/">LinkedIn — Syeda Beenish Fatima</a>
+    <a href="https://github.com/Beenishfatima1472/Halal-AI-Auditor">github.com/Beenishfatima1472/Halal-AI-Auditor</a>
+  </div>
+</footer>
+
+</body>
+</html>
