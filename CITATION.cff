@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use MACI in your research, please cite this repository and the associated paper."
+type: software
+title: "Halal AI Auditor — MACI Framework"
+abstract: "The Maqasid AI Compliance Index (MACI) is an open technical framework for auditing Large Language Models through the lens of Maqasid al-Shariah. It provides a 50-point scoring rubric across five pillars: Protection of Faith, Life, Intellect, Lineage, and Property."
+authors:
+  - family-names: Fatima
+    given-names: Syeda Beenish
+    email: syedabeenishf.14@gmail.com
+    orcid: ""
+    affiliation: "Superior University Lahore"
+repository-code: "https://github.com/Beenishfatima1472/Halal-AI-Auditor"
+url: "https://maqasidai.org"
+license: Apache-2.0
+version: "1.0.0"
+date-released: "2026-04-01"
+keywords:
+  - AI ethics
+  - Islamic finance
+  - Shariah compliance
+  - LLM auditing
+  - Maqasid al-Shariah
+  - fake fatwa detection
+  - Riba detection
+  - cultural AI ethics
+  - MENA AI governance
+preferred-citation:
+  type: article
+  title: "Fake-Fatwa Shield: Cultural AI Ethics for Protecting Religious Authenticity in the Age of Generative AI"
+  authors:
+    - family-names: Fatima
+      given-names: Syeda Beenish
+      affiliation: "Superior University Lahore"
+  status: under-review
+  year: 2026
+  notes: "Under Q1 journal review. Please cite the GitHub repository until the paper is published."
