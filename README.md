@@ -191,6 +191,7 @@ For audits, certifications, or research partnerships:
 
 - Email: syedabeenishf.14@gmail.com
 - LinkedIn: [Syeda Beenish Fatima](https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/)
+- LinkedIn:[Maqasid AI.org (linkedin.com/company/maqasid-ai-org/)]
 - Website: [MaqasidAI.org](https://maqasidai.org)
 
 ---
