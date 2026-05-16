@@ -268,22 +268,7 @@ Superior University Lahore
 
 ---
 
-
-## Contact
-
-For integration discussions, partnership enquiries, or technical briefings:
-
-**Syeda Beenish Fatima** — Founder, MaqasidAI  
-syedabeenishf.14@gmail.com  
-[maqasidai.org](https://maqasidai.org)  
-[LinkedIn](https://www.linkedin.com/in/syeda-beenish-fatima-395bb2263/) 
-[LinkedIn MaqasidAI.org](https://www.linkedin.com/company/maqasid-ai-org/)  
-[GitHub](https://github.com/Beenishfatima1472/Halal-AI-Auditor)
-
-
----
-
 ## License
 
-Apache License 2.0 — open for academic and commercial use with attribution. Copyright 2026 MaqasidAI.ORG
-
+Apache-2.0 — Open for academic and commercial use with attribution.  
+Enterprise licensing and certification partnerships available via [MaqasidAI.org](https://maqasidai.org).
