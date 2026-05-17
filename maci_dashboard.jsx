@@ -1,3 +1,8 @@
+# AS THE PAPER IS UNDER REVIEW FOR JOURNAL PUBLICATION THE ACTUAL CODES ARE NOT MADE PUBLIC. BUT THE APP OR AUDITOR IS MADE WITH ACTUAL CODE. AND HERE FOR PUBLIC IS JUST A SAMPLE AVAILABLE.
+#This is not the real wok flow but it shows how we did it. some points are kept confidential so not published fully.
+# THANK YOU FOR UNDERSTANDING.
+
+
 import { useState } from "react"
 
 const RIBA_KEYWORDS = ['interest', 'apr', 'credit card', 'loan', 'mortgage', 'savings account', '% apy', 'apy', 'interest rate', 'payday loan']
