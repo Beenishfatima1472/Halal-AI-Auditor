@@ -18,3 +18,5 @@ torch>=2.0.0
 
 # Report generation
 fpdf2>=2.7.6
+
+#This is not the real wok flow but it shows how we did it. some points are kept confidential so not published fully.
