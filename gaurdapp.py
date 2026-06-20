@@ -42,194 +42,253 @@ MACI_API_KEY = None  # e.g. "your-maci-key"
 
 
 # ──────────────────────────────────────────────────────────────────────
-# STYLE — matches maqasidai.org dark / gold theme
+# STYLE — warm green & gold, light, paper-like theme
 # ──────────────────────────────────────────────────────────────────────
 
 CUSTOM_CSS = """
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-    --bg-base:    #050b09;
-    --bg-surface: #071410;
-    --bg-card:    #0a1a0f;
-    --bg-lift:    #0b1f18;
-    --gold:       #c9a84c;
-    --gold-lt:    #e6b84a;
-    --gold-dim:   #7a5c1e;
-    --text:       #e8e9ed;
-    --text-mid:   #8a8d9a;
-    --text-dim:   #4a4d5c;
-    --green:      #4caf77;
-    --red:        #e05252;
-    --amber:      #d08a3a;
-    --border:     rgba(201,168,76,0.16);
+    --bg-page:     #f6f3ea;   /* warm parchment */
+    --bg-surface:  #ffffff;
+    --bg-card:     #fbf9f2;
+    --bg-soft:     #f0ecdf;
+    --green-deep:  #1f4d3a;   /* deep forest green */
+    --green-mid:   #2e6b50;
+    --green-soft:  #e8f1ec;
+    --gold:        #b8893a;
+    --gold-lt:     #d3a85a;
+    --gold-soft:   #f3e7cf;
+    --text:        #2b2a25;
+    --text-mid:    #6b6859;
+    --text-dim:    #9c987f;
+    --red:         #b8493e;
+    --red-soft:    #f6e6e3;
+    --amber:       #b8793a;
+    --amber-soft:  #f6ecd9;
+    --border:      #e1dac4;
+    --border-mid:  #d3c9a8;
+    --shadow:      rgba(31,77,58,0.07);
 }
 
-html, body, [class*="css"]  {
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, sans-serif;
 }
 
 .stApp {
-    background-color: var(--bg-base);
+    background-color: var(--bg-page);
+    background-image:
+        radial-gradient(ellipse at top left, rgba(31,77,58,0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(184,137,58,0.05) 0%, transparent 55%);
 }
 
-/* Hide default Streamlit chrome a bit */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    color: var(--green-deep) !important;
+    font-weight: 500 !important;
+}
+
+p, span, label, div { color: var(--text); }
+
 /* Version ribbon */
 .version-ribbon {
-    background: rgba(122,92,30,0.35);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
+    background: var(--green-deep);
+    border: 1px solid var(--green-deep);
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
     text-align: center;
     font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
+    color: #f3ead0;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 10px var(--shadow);
 }
 .version-ribbon .sub {
-    color: rgba(201,168,76,0.55);
+    color: rgba(243,234,208,0.7);
     font-size: 0.65rem;
     display: block;
-    margin-top: 0.25rem;
+    margin-top: 0.3rem;
     letter-spacing: 0.05em;
+    text-transform: none;
 }
 
 /* Disclaimer box */
 .disclaimer-box {
-    background: rgba(201,168,76,0.05);
-    border: 1px solid rgba(201,168,76,0.18);
-    border-radius: 4px;
-    padding: 0.85rem 1.1rem;
-    font-size: 0.78rem;
-    line-height: 1.7;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-mid);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-size: 0.82rem;
+    line-height: 1.75;
     color: var(--text-mid);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
-.disclaimer-box strong { color: var(--text); }
+.disclaimer-box strong { color: var(--green-deep); }
 
 /* Signal packet card */
 .packet-card {
-    background: var(--bg-card);
+    background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.25rem 1.5rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    line-height: 1.9;
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    font-family: 'Inter', monospace;
+    font-size: 0.88rem;
+    line-height: 2;
     color: var(--text);
+    box-shadow: 0 2px 12px var(--shadow);
 }
-.packet-card .k { color: #6a9ed8; }
-.packet-card .s { color: #c8a86e; }
-.packet-card .comment { color: rgba(232,233,237,0.25); }
+.packet-card .k { color: var(--green-mid); font-weight: 600; }
+.packet-card .s { color: var(--gold); }
+.packet-card .comment { color: var(--text-dim); font-style: italic; }
 
 /* Result pills */
 .pill {
     display: inline-block;
-    padding: 0.22rem 0.7rem;
-    border-radius: 3px;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    padding: 0.28rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    font-weight: 600;
-    margin-right: 0.4rem;
+    font-weight: 700;
+    margin-right: 0.45rem;
+    margin-bottom: 0.3rem;
 }
-.pill-pass    { background: rgba(76,175,119,0.12);  color: #4caf77; border: 1px solid rgba(76,175,119,0.3); }
-.pill-flag    { background: rgba(208,138,58,0.12);  color: #d08a3a; border: 1px solid rgba(208,138,58,0.3); }
-.pill-block   { background: rgba(224,82,82,0.12);   color: #e05252; border: 1px solid rgba(224,82,82,0.3); }
-.pill-neutral { background: rgba(255,255,255,0.05);  color: var(--text-mid); border: 1px solid rgba(255,255,255,0.1); }
-.pill-gold    { background: rgba(201,168,76,0.12);  color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+.pill-pass    { background: var(--green-soft);  color: var(--green-deep); border: 1px solid rgba(31,77,58,0.25); }
+.pill-flag    { background: var(--amber-soft);  color: var(--amber);      border: 1px solid rgba(184,121,58,0.3); }
+.pill-block   { background: var(--red-soft);    color: var(--red);        border: 1px solid rgba(184,73,62,0.3); }
+.pill-neutral { background: var(--bg-soft);     color: var(--text-mid);   border: 1px solid var(--border-mid); }
+.pill-gold    { background: var(--gold-soft);   color: var(--gold);       border: 1px solid rgba(184,137,58,0.35); }
 
 /* Enrichment block */
 .enrichment-block {
-    background: rgba(201,168,76,0.04);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 4px;
-    padding: 1rem 1.25rem;
-    margin-top: 1rem;
+    background: var(--green-soft);
+    border: 1px solid rgba(31,77,58,0.18);
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    margin-top: 1.1rem;
+    box-shadow: 0 2px 10px var(--shadow);
 }
 .enrichment-header {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    padding-bottom: 0.5rem;
+    color: var(--green-deep);
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(31,77,58,0.15);
+    padding-bottom: 0.55rem;
 }
 .e-label {
-    font-size: 0.62rem;
+    font-size: 0.64rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-dim);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
 }
 .e-val {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
 }
-.e-val.gold { color: var(--gold-lt); }
+.e-val.gold { color: var(--gold); font-weight: 600; }
 
 .alt-box {
-    background: rgba(76,175,119,0.05);
-    border: 1px solid rgba(76,175,119,0.2);
-    border-radius: 4px;
-    padding: 0.8rem 1rem;
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: rgba(76,175,119,0.9);
-    line-height: 1.65;
+    background: var(--bg-surface);
+    border: 1px solid rgba(31,77,58,0.2);
+    border-left: 4px solid var(--green-mid);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    line-height: 1.7;
 }
 .alt-label {
-    font-size: 0.62rem;
+    font-size: 0.64rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(76,175,119,0.65);
-    margin-bottom: 0.4rem;
+    color: var(--green-mid);
+    margin-bottom: 0.45rem;
+    font-weight: 700;
 }
 
 .warning-box {
-    background: rgba(208,138,58,0.07);
-    border: 1px solid rgba(208,138,58,0.25);
-    border-radius: 4px;
-    padding: 0.7rem 1rem;
-    font-size: 0.78rem;
-    color: var(--amber);
-    margin-top: 0.75rem;
+    background: var(--amber-soft);
+    border: 1px solid rgba(184,121,58,0.3);
+    border-left: 4px solid var(--amber);
+    border-radius: 6px;
+    padding: 0.8rem 1.1rem;
+    font-size: 0.82rem;
+    color: #8a5a26;
+    margin-top: 0.85rem;
 }
 
 .audit-id {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     color: var(--text-dim);
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
     letter-spacing: 0.04em;
+    font-family: 'Inter', monospace;
 }
 
 /* Buttons */
 div.stButton > button {
-    background: var(--gold);
-    color: #050b09;
+    background: var(--green-deep);
+    color: #f6f3ea;
     border: none;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-size: 0.78rem;
-    padding: 0.6rem 1rem;
-    border-radius: 4px;
+    font-size: 0.8rem;
+    padding: 0.65rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(31,77,58,0.2);
 }
 div.stButton > button:hover {
-    background: var(--gold-lt);
-    color: #050b09;
+    background: var(--green-mid);
+    color: #f6f3ea;
+    box-shadow: 0 3px 12px rgba(31,77,58,0.28);
 }
+
+/* Inputs */
+.stTextArea textarea, .stSelectbox div[data-baseweb="select"] {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-mid) !important;
+    border-radius: 6px !important;
+    color: var(--text) !important;
+}
+.stTextArea textarea:focus {
+    border-color: var(--green-mid) !important;
+    box-shadow: 0 0 0 1px var(--green-mid) !important;
+}
+
+/* Radio buttons in sidebar */
+.stRadio label { color: var(--text) !important; }
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background-color: var(--bg-surface);
+    background-color: var(--bg-card);
     border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] hr {
+    border-color: var(--border);
+}
+
+/* Captions */
+.stCaption, [data-testid="stCaptionContainer"] {
+    color: var(--text-dim) !important;
+}
+
+hr {
+    border-color: var(--border) !important;
 }
 </style>
 """
@@ -757,16 +816,16 @@ st.markdown("---")
 st.markdown(
     """
     <div style="text-align:center; padding: 1.5rem 0;">
-        <p style="color:#8a8d9a; font-style:italic; font-size:0.95rem;">
+        <p style="color:#6b6859; font-style:italic; font-family:'Cormorant Garamond', Georgia, serif; font-size:1.1rem;">
         MACI sits between your AI system and your institutional process —
         every decision auditable, every violation flagged with a Maqasid-enriched
         signal before it reaches your users.
         </p>
-        <p style="color:#4a4d5c; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; margin-top:1rem;">
+        <p style="color:#9c987f; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; margin-top:1.1rem;">
         Technical governance review only · Not a Shariah certification ·
         Does not constitute a fatwa or religious ruling
         </p>
-        <p style="color:#4a4d5c; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase;">
+        <p style="color:#b8893a; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; margin-top:0.4rem;">
         MACI V.03 · Audit-Facing Production-Runtime Candidate Shell
         </p>
     </div>
