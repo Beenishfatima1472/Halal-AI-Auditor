@@ -1,22 +1,2 @@
-# MACI Framework — Python dependencies
-# Install with: pip install -r requirements.txt
-
-# Core
-python-dateutil>=2.8.2
-
-# Streamlit interface (guardapp.py)
-streamlit>=1.32.0
-
-# NLP and ML (for halal_guard.py extended mode)
-scikit-learn>=1.3.0
-numpy>=1.24.0
-pandas>=2.0.0
-
-# Arabic NLP (Fake-Fatwa Shield — v1.5+)
-transformers>=4.38.0
-torch>=2.0.0
-
-# Report generation
-fpdf2>=2.7.6
-
-#This is not the real wok flow but it shows how we did it. some points are kept confidential so not published fully.
+streamlit>=1.32
+requests>=2.31
